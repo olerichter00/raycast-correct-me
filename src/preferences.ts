@@ -3,4 +3,5 @@ export interface Preferences {
   translationLanguages: string;
   fallbackTranslationLanguages?: string;
   translateAutomatically?: boolean;
+  pro: boolean;
 }

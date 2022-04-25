@@ -3,10 +3,10 @@ import translate, { DeeplLanguages } from "deepl";
 import { Preferences } from "../preferences";
 
 const translateTo = async (text: string, targetLanguage: DeeplLanguages) => {
-  const { deeplAuthKey } = await getPreferenceValues<Preferences>();
+  const { deeplAuthKey, pro } = await getPreferenceValues<Preferences>();
 
   const { data } = await translate({
-    free_api: true,
+    free_api: !pro,
     text,
     target_lang: targetLanguage,
     auth_key: deeplAuthKey,
