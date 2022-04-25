@@ -2,7 +2,7 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "correct-me",
   "title": "Correct Me",
-  "description": "",
+  "description": "Correct every text using in 26 languages using DeepL.",
   "icon": "command-icon.png",
   "author": "olerichter00",
   "categories": [
@@ -14,7 +14,8 @@
     {
       "name": "index",
       "title": "Correct Me",
-      "description": "",
+      "subtitle": "Text Auto-Correction",
+      "description": "Correct any text with DeepL",
       "mode": "view"
     }
   ],
