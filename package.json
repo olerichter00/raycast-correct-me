@@ -1,0 +1,80 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "correct-me",
+  "title": "Correct Me",
+  "description": "",
+  "icon": "command-icon.png",
+  "author": "olerichter00",
+  "categories": [
+    "Productivity"
+  ],
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "index",
+      "title": "Correct Me",
+      "description": "",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "deeplAuthKey",
+      "type": "password",
+      "required": true,
+      "title": "API key",
+      "description": "Your DeepL API key",
+      "placeholder": "Enter your free DeepL API key"
+    },
+    {
+      "name": "pro",
+      "type": "checkbox",
+      "label": "Check if you have DeepL API Pro",
+      "required": true,
+      "default": false,
+      "title": "DeepL API Pro",
+      "description": "Check if you have DeepL API Pro"
+    },
+    {
+      "name": "translationLanguages",
+      "type": "textfield",
+      "label": "Translation Language",
+      "required": false,
+      "default": "DE",
+      "title": "Translation Language",
+      "description": "Translation Language"
+    },
+    {
+      "name": "fallbackTranslationLanguages",
+      "type": "textfield",
+      "label": "Fallback Translation Language",
+      "required": false,
+      "default": "EN",
+      "title": "Fallback Translation Language",
+      "description": "Fallback Translation Language"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.33.1",
+    "deepl": "^1.0.13",
+    "diff": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/diff": "^5.0.2",
+    "@types/node": "~16.10.0",
+    "@types/react": "^17.0.28",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.5.1",
+    "react-devtools": "^4.19.2",
+    "typescript": "^4.4.3"
+  },
+  "scripts": {
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint"
+  }
+}
