@@ -1,11 +1,21 @@
-import { Form, ActionPanel, Action, showToast, Detail, getPreferenceValues, Toast } from "@raycast/api";
+import { Form, ActionPanel, Action, showToast, Detail, getPreferenceValues, Toast, useNavigation } from "@raycast/api";
 import { useEffect, useState } from "react";
 import { Clipboard } from "@raycast/api";
 import { markdownDiff } from "./utils/diffHelper";
 import { correctText } from "./utils/translationHelper";
 import { Preferences } from "./preferences";
 
+interface TextDiffProps {
+  originalText: string;
+  correctedText: string;
+}
+function TextDiff({ originalText, correctedText }: TextDiffProps) {
+  return <Detail markdown={markdownDiff(originalText, correctedText)} />;
+}
+
 export default function Command() {
+  const { push } = useNavigation();
+
   const [originalText, setOriginalText] = useState("");
   const [correctedText, setCorrectedText] = useState("");
   const [loading, setLoading] = useState(false);
@@ -17,10 +27,14 @@ export default function Command() {
       const [text, sourceLanguage] = await correctText(originalText);
 
       setCorrectedText(text);
+
       Clipboard.copy(text);
+
       showToast(Toast.Style.Success, "Copied to Clipboard", `Detected Language: ${sourceLanguage}`);
+
+      push(<TextDiff originalText={originalText} correctedText={text} />);
     } catch (error) {
-      await showToast(Toast.Style.Failure, "Something went wrong", JSON.stringify(error));
+      showToast(Toast.Style.Failure, "Something went wrong", JSON.stringify(error));
     } finally {
       setLoading(false);
     }
@@ -41,10 +55,6 @@ export default function Command() {
   useEffect(() => {
     copyFromClipboard();
   }, []);
-
-  if (correctedText) {
-    return <Detail markdown={markdownDiff(originalText, correctedText)} />;
-  }
 
   return (
     <Form
