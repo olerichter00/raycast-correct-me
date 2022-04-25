@@ -6,7 +6,8 @@
   "icon": "command-icon.png",
   "author": "olerichter00",
   "categories": [
-    "Productivity"
+    "Productivity",
+    "Communication"
   ],
   "license": "MIT",
   "commands": [
