@@ -18,7 +18,7 @@ const translateTo = async (text: string, targetLanguage: DeeplLanguages) => {
 export const correctText = async (originalText: string) => {
   const { translationLanguages, fallbackTranslationLanguages } = await getPreferenceValues<Preferences>();
 
-  let { detected_source_language, text: germanText } = await translateTo(
+  let { detected_source_language, text: translatedText } = await translateTo(
     originalText,
     translationLanguages as DeeplLanguages
   );
@@ -28,10 +28,10 @@ export const correctText = async (originalText: string) => {
     const result = await translateTo(originalText, fallbackTranslationLanguages as DeeplLanguages);
 
     detected_source_language = result.detected_source_language;
-    germanText = result.text;
+    translatedText = result.text;
   }
 
-  const { text } = await translateTo(germanText, detected_source_language as DeeplLanguages);
+  const { text: correctText } = await translateTo(translatedText, detected_source_language as DeeplLanguages);
 
-  return [text, detected_source_language];
+  return [correctText, detected_source_language];
 };
