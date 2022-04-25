@@ -1,6 +1,6 @@
 # Correct Me
 
-Correct every text using in 26 languages using DeepL.
+Correct any text in 26 languages with DeepL.
 
 ## How to get the API Token
 
