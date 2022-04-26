@@ -1,8 +1,7 @@
 import { Form, ActionPanel, Action, showToast, Detail, getPreferenceValues, Toast, useNavigation } from "@raycast/api";
 import { useEffect, useState } from "react";
 import { Clipboard } from "@raycast/api";
-import { markdownDiff } from "./utils/diffHelper";
-import { correctText } from "./utils/translationHelper";
+import { createMarkdownDiff, correctText } from "./utils";
 import { Preferences } from "./preferences";
 
 interface TextDiffProps {
@@ -10,7 +9,7 @@ interface TextDiffProps {
   correctedText: string;
 }
 function TextDiff({ originalText, correctedText }: TextDiffProps) {
-  return <Detail markdown={markdownDiff(originalText, correctedText)} />;
+  return <Detail markdown={createMarkdownDiff(originalText, correctedText)} />;
 }
 
 export default function Command() {
