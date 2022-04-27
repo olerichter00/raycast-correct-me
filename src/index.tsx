@@ -16,22 +16,21 @@ export default function Command() {
   const { push } = useNavigation();
 
   const [originalText, setOriginalText] = useState("");
-  const [correctedText, setCorrectedText] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const translate = async () => {
+  const handleCorrect = async (textToCorrect: string) => {
     setLoading(true);
 
     try {
-      const [text, sourceLanguage] = await correctText(originalText);
+      const { pasteAutomatically } = await getPreferenceValues<Preferences>();
 
-      setCorrectedText(text);
+      const [text, sourceLanguage] = await correctText(textToCorrect);
 
-      Clipboard.copy(text);
+      if (pasteAutomatically) Clipboard.copy(text);
 
       showToast(Toast.Style.Success, "Copied to Clipboard", `Detected Language: ${sourceLanguage}`);
 
-      push(<TextDiff originalText={originalText} correctedText={text} />);
+      push(<TextDiff originalText={textToCorrect} correctedText={text} />);
     } catch (error) {
       showToast(Toast.Style.Failure, "Something went wrong", JSON.stringify(error));
     } finally {
@@ -40,7 +39,9 @@ export default function Command() {
   };
 
   const copyFromClipboard = async () => {
-    const { translateAutomatically } = await getPreferenceValues<Preferences>();
+    const { translateAutomatically, copyAutomatically } = await getPreferenceValues<Preferences>();
+
+    if (!copyAutomatically) return;
 
     const text = await Clipboard.readText();
 
@@ -48,7 +49,7 @@ export default function Command() {
 
     setOriginalText(text);
 
-    if (translateAutomatically) translate();
+    if (translateAutomatically) setTimeout(() => handleCorrect(text), 100);
   };
 
   useEffect(() => {
@@ -59,7 +60,7 @@ export default function Command() {
     <Form
       actions={
         <ActionPanel>
-          <Action.SubmitForm onSubmit={translate} />
+          <Action.SubmitForm onSubmit={() => handleCorrect(originalText)} />
         </ActionPanel>
       }
       isLoading={loading}

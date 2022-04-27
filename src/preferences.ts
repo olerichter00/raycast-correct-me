@@ -3,5 +3,7 @@ export interface Preferences {
   translationLanguages: string;
   fallbackTranslationLanguages?: string;
   translateAutomatically?: boolean;
+  copyAutomatically?: boolean;
+  pasteAutomatically?: boolean;
   pro: boolean;
 }
