@@ -14,7 +14,7 @@
     {
       "name": "index",
       "title": "Correct Me",
-      "subtitle": "Text Auto-Correction",
+      "subtitle": "Auto-Correct Text",
       "description": "Correct any text with DeepL",
       "mode": "view"
     }
@@ -54,6 +54,33 @@
       "default": "EN",
       "title": "Fallback Translation Language",
       "description": "Fallback Translation Language"
+    },
+    {
+      "name": "translateAutomatically",
+      "type": "checkbox",
+      "label": "Translate automatically",
+      "required": false,
+      "default": false,
+      "title": "Translate automatically",
+      "description": "Translate automatically"
+    },
+    {
+      "name": "copyAutomatically",
+      "type": "checkbox",
+      "label": "Automatically read from clipboard",
+      "required": false,
+      "default": true,
+      "title": "Automatically read from clipboard",
+      "description": "Automatically read from clipboard"
+    },
+    {
+      "name": "pasteAutomatically",
+      "type": "checkbox",
+      "label": "Automatically paste to clipboard",
+      "required": false,
+      "default": true,
+      "title": "Automatically paste to clipboard",
+      "description": "Automatically paste to clipboard"
     }
   ],
   "dependencies": {
