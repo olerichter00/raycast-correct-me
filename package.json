@@ -34,7 +34,6 @@
       "label": "Check if you have DeepL API Pro",
       "required": true,
       "default": false,
-      "title": "DeepL API Pro",
       "description": "Check if you have DeepL API Pro"
     },
     {
@@ -61,7 +60,7 @@
       "label": "Translate automatically",
       "required": false,
       "default": false,
-      "title": "Translate automatically",
+      "title": "Automatic Translation",
       "description": "Translate automatically"
     },
     {
@@ -70,7 +69,7 @@
       "label": "Automatically read from clipboard",
       "required": false,
       "default": true,
-      "title": "Automatically read from clipboard",
+      "title": "Clipboard",
       "description": "Automatically read from clipboard"
     },
     {
@@ -79,7 +78,6 @@
       "label": "Automatically paste to clipboard",
       "required": false,
       "default": true,
-      "title": "Automatically paste to clipboard",
       "description": "Automatically paste to clipboard"
     }
   ],
